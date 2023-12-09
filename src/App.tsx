@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Preview } from './preview';
+import front from './assets/sedan.png';
+import back from './assets/sedan-rear.png';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Preview
+      images={{ front, back }}
+      parts={[
+        {
+          title: "Front-right Bumper",
+          front: [1160, 540],
+          back: [340, 250]
+        },
+        {
+          title: "Rear Bumper",
+          front: [100, 300],
+          back: [1350, 500]
+        },
+        {
+          title: "Front Bonnet",
+          front: [1180, 370],
+          back: [320, 230]
+        }
+      ]} />
   );
 }
 
