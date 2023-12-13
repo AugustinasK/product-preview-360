@@ -1,12 +1,15 @@
-# Product preview
+# Product preview 360
 ![Screenshot](screenshot.png)
 
-This is a repo of test project I was doing at 2020.
-I'm doing an update due to outdated packages, APIs and to improve overall usability a bit.
+Credit to https://sketchfab.com/3d-models/car-model-blender-2be4c41ccc774fc79f3e598e0091e3b9 for the car model
+
+This is a repo of a sample 360 product preview app.
+I've made this repo as a mutation of https://github.com/AugustinasK/product-preview - an older project for product preview.
 
 ## How to use
 * Select a circle/dot on a product or click a button indicating desired part
-* You can flip the product side aka switch the image
+* You can rotate the product by using a slider below the image
+* You can automate product rotation by using play/stop button
 
 ## Development
 * Run `npm i` to get dependencies
@@ -15,4 +18,4 @@ I'm doing an update due to outdated packages, APIs and to improve overall usabil
 
 ## Other
 * Images of a producs must have the same dimensions
-* In the future versions it would be nice to have as many pictures of a product as you want aka 360 product preview
+* In the future versions it would be nice to think of a solution for points which are behind the image (e.g. back bumper shouldn't be visible when the car is front-facing)

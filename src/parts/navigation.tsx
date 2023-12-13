@@ -1,14 +1,12 @@
 import styled from "styled-components";
-import { Parts } from "../types";
 
-const PartButton = styled.button<{ $highlighted: boolean; }>`
+const PartButton = styled.a<{ $highlighted: boolean; }>`
   border: none;
-  padding: 15px 25px;
   margin-right: 20px;
   margin-bottom: 10px;
-  background-color: ${props => props.$highlighted ? 'crimson' : '#ddd'};
-  color: ${props => props.$highlighted ? 'white' : 'black'};
+  color: ${props => props.$highlighted ? 'crimson' : '#333333'};
   cursor: pointer;
+  text-decoration: underline;
 `;
 
 
@@ -23,7 +21,7 @@ const ButtonsWrapper = styled.nav`
 `;
 
 interface PartsNavigationProps {
-    parts: Parts[];
+    parts: string[];
     onPartClick: (index: number) => void;
     highlightedPart?: number;
 }
@@ -32,14 +30,14 @@ const PartsNavigation = ({ parts, onPartClick, highlightedPart }: PartsNavigatio
     return (
         <ButtonsWrapper>
             {
-                parts.map((part, index) => {
+                parts.map((part: any, index: any) => {
                     return (
                         <PartButton
                             key={index}
                             onClick={() => onPartClick(index)}
                             $highlighted={highlightedPart === index}
                         >
-                            {part.title}
+                            {part}
                         </PartButton>
                     )
                 })

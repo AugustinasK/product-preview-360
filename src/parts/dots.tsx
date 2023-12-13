@@ -1,4 +1,4 @@
-import { Parts } from "../types";
+// import { Parts } from "../types";
 import styled, { css, keyframes } from 'styled-components';
 
 const DotPulse = keyframes`
@@ -18,10 +18,11 @@ const PartDot = styled.div<{ $highlighted: boolean; }>`
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: ${props => props.$highlighted ? 'crimson' : 'cornflowerblue'};
+  background: ${props => props.$highlighted ? 'crimson' : 'white'};
   position: absolute;
   cursor: pointer;
   z-index: ${props => props.$highlighted ? 1 : 0};
+  transform: translate(-10px, -10px);
   ${props => props.$highlighted ? css`
     &:before {
       content: '';
@@ -40,42 +41,43 @@ const PartDot = styled.div<{ $highlighted: boolean; }>`
 `;
 
 interface PartsDotsProps {
-    parts: Parts[];
     onPartClick: (index: number) => void;
     highlightedPart?: number;
-    isShowingFront: boolean;
+    coordinates: [number, number][];
     imageWidth: number;
     windowWidth: number;
 }
 
 const PartsDots = ({
-    parts,
     onPartClick,
     highlightedPart,
-    isShowingFront,
+    coordinates,
     imageWidth,
     windowWidth
-}: PartsDotsProps) => (
+}: PartsDotsProps) => {
 
-    parts.map((part, index) => {
-        const partPosition = isShowingFront ? part.front : part.back;
-        const scaledPosition = imageWidth < windowWidth ? partPosition : [
-            partPosition[0] * (windowWidth / imageWidth),
-            partPosition[1] * (windowWidth / imageWidth),
-        ]
+    return (
+        <>
+            {coordinates.map((coordinate, index) => {
+                const scaledPosition = imageWidth < windowWidth ? coordinate : [
+                    coordinate[0] * (windowWidth / imageWidth),
+                    coordinate[1] * (windowWidth / imageWidth),
+                ];
 
-        return (
-            <PartDot
-                key={index}
-                onClick={() => onPartClick(index)}
-                $highlighted={highlightedPart === index}
-                style={{
-                    left: scaledPosition[0],
-                    top: scaledPosition[1]
-                }}
-            />
-        )
-    }
-));
+                return (
+                    <PartDot
+                        key={index}
+                        onClick={() => onPartClick(index)}
+                        $highlighted={highlightedPart === index}
+                        style={{
+                            left: scaledPosition[0],
+                            top: scaledPosition[1]
+                        }}
+                    />
+                )
+            })}
+        </>
+    );
+};
 
 export { PartsDots }

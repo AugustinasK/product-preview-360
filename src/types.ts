@@ -1,5 +1,4 @@
-export interface Parts {
-    title: string;
-    front: [number, number];
-    back: [number, number];
-}
+export interface ProductImageProps {
+    image: string;
+    partsCoordinates: [number, number][];
+  }
